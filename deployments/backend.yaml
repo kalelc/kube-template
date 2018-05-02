@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: puma
+spec:
+  selector:
+    matchLabels:
+      app: puma
+      tier: backend
+      track: stable
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: puma
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: puma
+          image: 'kalelc/nginx'
+          ports:
+            - name: http
+              containerPort: 80
