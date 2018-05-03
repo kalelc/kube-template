@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/socket
 kind: Deployment
 metadata:
   name: puma
@@ -8,6 +8,7 @@ spec:
       app: puma
       tier: backend
       track: stable
+      type: socket
   replicas: 2
   template:
     metadata:
@@ -15,10 +16,9 @@ spec:
         app: puma
         tier: backend
         track: stable
+        type: socket
     spec:
       containers:
         - name: puma
-          image: 'kalelc/nginx'
-          ports:
-            - name: http
-              containerPort: 80
+          image: kalelc/puma
+          imagePullPolicy: IfNotPresent
