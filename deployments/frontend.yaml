@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      tier: frontend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+      - name: nginx
+        image: kalelc/nginx
+        volumeMounts:
+        - name: app-storage
+          mountPath: /app/sockets
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-pv-claim
