@@ -1,4 +1,4 @@
-apiVersion: apps/socket
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: puma
@@ -9,7 +9,7 @@ spec:
       tier: backend
       track: stable
       type: socket
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -22,3 +22,10 @@ spec:
         - name: puma
           image: kalelc/puma
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app-storage
+              mountPath: /app/sockets
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-pv-claim
