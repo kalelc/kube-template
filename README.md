@@ -1,6 +1,6 @@
 # Kube-Templates
 
-This is a project using existent docker's images to run throught Kubernetes.
+This is a project using existent docker's images to run through Kubernetes. It uses the same images that https://github.com/kalelc/dockerize-rails-projects.
 
 ### Build deployments
 
