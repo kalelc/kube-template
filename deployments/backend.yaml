@@ -5,18 +5,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: puma
-      tier: backend
-      track: stable
-      type: socket
+      run: backend
   replicas: 1
   template:
     metadata:
       labels:
-        app: puma
-        tier: backend
-        track: stable
-        type: socket
+        run: backend
     spec:
       containers:
         - name: puma
@@ -25,7 +19,14 @@ spec:
           volumeMounts:
             - name: app-storage
               mountPath: /app/sockets
+        - name: nginx
+          image: kalelc/nginx
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app-storage
+              mountPath: /app/sockets
       volumes:
         - name: app-storage
-          persistentVolumeClaim:
-            claimName: app-pv-claim
+          emptyDir: {}
+          #persistentVolumeClaim:
+          #  claimName: app-pv-claim
