@@ -2,20 +2,21 @@
 
 This is a project using existent docker's images to run through Kubernetes. It uses the same images that https://github.com/kalelc/dockerize-rails-projects.
 
-### Build deployments
+## Build Application
 
-Nginx: `kubectl apply -f deployments/frontend.yaml`
+### With separate files
 
-App: `kubectl apply -f deployments/backend-socket.yaml`
+`kubectl apply -f deployments/backend.yaml`: Create backend's deployment.
+`kubectl apply -f services/backend.yaml`: Expose backend using service.
 
-### Build Volumes
+`kubectl apply -f deployments/mysql.yaml`: Create mysql's deployment.
+`kubectl apply -f services/mysql.yaml`: Expose mysql using service.
+`kubectl apply -f volumes/mysql.yaml`: Create volume to persist mysql data.
 
-App: `kubectl apply -f volumes/app.yaml`
+### With Script
 
-### Build Services
+`sh deploy.sh`
 
-Frontend: `kubectl apply -f services/frontend.yaml`
-
-### Access
+## Access
 
 `http://localhost`
