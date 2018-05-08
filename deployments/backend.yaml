@@ -17,14 +17,20 @@ spec:
           image: kalelc/puma
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: app-storage
-              mountPath: /app/sockets
+            - mountPath: /app/sockets
+              name: app-socket
+            - mountPath: /app/log
+              name: app-storage
+              subPath: logs
         - name: nginx
           image: kalelc/nginx
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: app-storage
-              mountPath: /app/sockets
+            - mountPath: /app/sockets
+              name: app-socket
       volumes:
-        - name: app-storage
+        - name: app-socket
           emptyDir: {}
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-pv-claim
