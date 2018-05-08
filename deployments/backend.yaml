@@ -28,5 +28,3 @@ spec:
       volumes:
         - name: app-storage
           emptyDir: {}
-          #persistentVolumeClaim:
-          #  claimName: app-pv-claim
