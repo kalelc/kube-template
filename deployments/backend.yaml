@@ -22,12 +22,18 @@ spec:
             - mountPath: /app/log
               name: app-storage
               subPath: logs
+            - mountPath: /app/public/assets
+              name: app-storage
+              subPath: assets
         - name: nginx
           image: kalelc/nginx
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/sockets
               name: app-socket
+            - mountPath: /app/public/assets
+              name: app-storage
+              subPath: assets
       volumes:
         - name: app-socket
           emptyDir: {}
