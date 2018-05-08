@@ -6,6 +6,8 @@ This is a project using existent docker's images to run through Kubernetes. It u
 
 ### With separate files
 
+`kubectl apply -f volumes/app.yaml`: Create volume to persist logs and other stuff about app.
+
 `kubectl apply -f deployments/backend.yaml`: Create backend's deployment.
 
 `kubectl apply -f services/backend.yaml`: Expose backend using service.
