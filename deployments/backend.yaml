@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: puma
-          image: kalelc/puma
+          image: kalelc/puma:production
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /app/sockets
@@ -25,6 +25,11 @@ spec:
             - mountPath: /app/public/assets
               name: app-storage
               subPath: assets
+          resources:
+            limits:
+              cpu: "100m"
+            requests:
+              cpu: "50m"
         - name: nginx
           image: kalelc/nginx
           imagePullPolicy: IfNotPresent
@@ -34,6 +39,11 @@ spec:
             - mountPath: /app/public/assets
               name: app-storage
               subPath: assets
+          resources:
+            limits:
+              cpu: "50m"
+            requests:
+              cpu: "20m"
       volumes:
         - name: app-socket
           emptyDir: {}
