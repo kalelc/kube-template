@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: puma
-          image: kalelc/puma:production
-          imagePullPolicy: IfNotPresent
+          image: kalelc/demo-puma:latest
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/sockets
               name: app-socket
@@ -31,8 +31,8 @@ spec:
             requests:
               cpu: "50m"
         - name: nginx
-          image: kalelc/nginx
-          imagePullPolicy: IfNotPresent
+          image: kalelc/demo-nginx:latest
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/sockets
               name: app-socket
