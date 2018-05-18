@@ -4,23 +4,11 @@ This is a project using existent docker's images to run through Kubernetes. It u
 
 ## Build Application
 
-### With separate files
-
-`kubectl apply -f volumes/app.yaml`: Create volume to persist logs and other stuff about app.
-
-`kubectl apply -f deployments/backend.yaml`: Create backend's deployment.
-
-`kubectl apply -f services/backend.yaml`: Expose backend using service.
-
-`kubectl apply -f deployments/mysql.yaml`: Create mysql's deployment.
-
-`kubectl apply -f services/mysql.yaml`: Expose mysql using service.
-
-`kubectl apply -f volumes/mysql.yaml`: Create volume to persist mysql data.
-
-### With Script
-
 `sh deploy.sh`
+
+## Delete Deployments, services and pvc
+
+`sh remove.sh`
 
 ### Configure to use on production
 
