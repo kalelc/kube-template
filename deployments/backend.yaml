@@ -17,36 +17,35 @@ spec:
           image: kalelc/demo-puma:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /app/sockets
-              name: app-socket
             - mountPath: /app/log
               name: app-storage
-              subPath: logs
-            - mountPath: /app/public/assets
+              subPath: log
+            - mountPath: /app/public
               name: app-storage
-              subPath: assets
+              subPath: public
           resources:
             limits:
               cpu: "100m"
             requests:
               cpu: "50m"
+          ports:
+            - containerPort: 3000
         - name: nginx
           image: kalelc/demo-nginx:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /app/sockets
-              name: app-socket
-            - mountPath: /app/public/assets
+            - mountPath: /app/log
               name: app-storage
-              subPath: assets
+              subPath: log
+            - mountPath: /app/public
+              name: app-storage
+              subPath: public
           resources:
             limits:
               cpu: "50m"
             requests:
               cpu: "20m"
       volumes:
-        - name: app-socket
-          emptyDir: {}
         - name: app-storage
           persistentVolumeClaim:
             claimName: app-pv-claim
