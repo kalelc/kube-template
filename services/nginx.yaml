@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: nginx
   labels:
-    run: nginx
+    run: backend
 spec:
   selector:
-    run: nginx
+    run: backend
   ports:
   - protocol: "TCP"
     port: 80
