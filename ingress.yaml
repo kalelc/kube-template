@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  backend:
+    serviceName: puma
+    servicePort: 3000
+  rules:
+  - host: bar.beetrack.com
+    http:
+      paths:
+      - backend:
+          serviceName: puma
+          servicePort: 3000
