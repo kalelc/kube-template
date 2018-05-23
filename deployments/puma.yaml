@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: puma
 spec:
   selector:
     matchLabels:
@@ -30,21 +30,6 @@ spec:
               cpu: "50m"
           ports:
             - containerPort: 3000
-        - name: nginx
-          image: kalelc/demo-nginx:latest
-          imagePullPolicy: Always
-          volumeMounts:
-            - mountPath: /app/log
-              name: app-storage
-              subPath: log
-            - mountPath: /app/public
-              name: app-storage
-              subPath: public
-          resources:
-            limits:
-              cpu: "50m"
-            requests:
-              cpu: "20m"
       volumes:
         - name: app-storage
           persistentVolumeClaim:
