@@ -1,0 +1,13 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: app-storage-3
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: app-storage
+  capacity:
+    storage: 10Gi
+  awsElasticBlockStore:
+    volumeID: vol-013695c78c16bcff1
+    fsType: ext4
