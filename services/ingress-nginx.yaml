@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ingress-nginx
+  labels:
+    app: ingress-nginx
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '30'
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+spec:
+  externalTrafficPolicy: Local
+  type: LoadBalancer
+  selector:
+    run: backend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+  - name: https
+    port: 443
+    targetPort: 3000
